@@ -1,7 +1,7 @@
 {
   "version": 2,
   "buildCommand": "pnpm run build",
-  "outputDirectory": "dist",
+  "outputDirectory": "dist/apps/service-hub-backend",
   "installCommand": "pnpm install --frozen-lockfile",
   "functions": {
     "dist/apps/service-hub-backend/main.js": {
@@ -12,7 +12,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/apps/service-hub-backend/main.js"
+      "dest": "/main.js"
     }
   ],
   "env": {
