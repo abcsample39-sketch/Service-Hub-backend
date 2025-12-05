@@ -6,8 +6,7 @@
   "functions": {
     "dist/apps/service-hub-backend/main.js": {
       "runtime": "@vercel/node",
-      "maxDuration": 30,
-      "includeFiles": ["dist/apps/service-hub-backend/**"]
+      "maxDuration": 30
     }
   },
   "routes": [
