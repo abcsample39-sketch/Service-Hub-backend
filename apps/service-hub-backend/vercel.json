@@ -1,14 +1,23 @@
 {
   "version": 2,
-  "buildCommand": "pnpm build",
-  "outputDirectory": "../../dist/apps/service-hub-backend",
+  "buildCommand": "pnpm run build",
+  "outputDirectory": "dist/apps/service-hub-backend",
+  "installCommand": "pnpm install --frozen-lockfile",
   "builds": [
     {
-      "src": "main.js",
+      "src": "dist/apps/service-hub-backend/main.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "main.js" }
-  ]
+    {
+      "src": "/(.*)",
+      "dest": "dist/apps/service-hub-backend/main.js"
+    }
+  ],
+  "functions": {
+    "dist/apps/service-hub-backend/main.js": {
+      "maxDuration": 30
+    }
+  }
 }
