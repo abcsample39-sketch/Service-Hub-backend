@@ -1,15 +1,23 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.init();
+let cachedApp: any;
 
-  return app.getHttpAdapter().getInstance();
+async function bootstrap() {
+  if (!cachedApp) {
+    const app = await NestFactory.create(AppModule);
+    await app.init();
+    cachedApp = app.getHttpAdapter().getInstance();
+  }
+
+  return cachedApp;
 }
 
 // Export for Vercel serverless functions
-export default bootstrap();
+export default async (req: any, res: any) => {
+  const app = await bootstrap();
+  return app(req, res);
+};
 
 // For local development
 if (require.main === module) {

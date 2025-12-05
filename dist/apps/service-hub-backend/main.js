@@ -9,12 +9,19 @@
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __webpack_require__(1);
 const app_module_1 = __webpack_require__(2);
+let cachedApp;
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule);
-    await app.init();
-    return app.getHttpAdapter().getInstance();
+    if (!cachedApp) {
+        const app = await core_1.NestFactory.create(app_module_1.AppModule);
+        await app.init();
+        cachedApp = app.getHttpAdapter().getInstance();
+    }
+    return cachedApp;
 }
-exports["default"] = bootstrap();
+exports["default"] = async (req, res) => {
+    const app = await bootstrap();
+    return app(req, res);
+};
 if (__webpack_require__.c[__webpack_require__.s] === module) {
     bootstrap().then((app) => {
         app.listen(process.env.PORT ?? 5432);
