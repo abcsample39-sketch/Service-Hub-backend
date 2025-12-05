@@ -1,7 +1,28 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ([
-/* 0 */,
+/* 0 */
+/***/ ((module, exports, __webpack_require__) => {
+
+/* module decorator */ module = __webpack_require__.nmd(module);
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core_1 = __webpack_require__(1);
+const app_module_1 = __webpack_require__(2);
+async function bootstrap() {
+    const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    await app.init();
+    return app.getHttpAdapter().getInstance();
+}
+exports["default"] = bootstrap();
+if (__webpack_require__.c[__webpack_require__.s] === module) {
+    bootstrap().then((app) => {
+        app.listen(process.env.PORT ?? 5432);
+    });
+}
+
+
+/***/ }),
 /* 1 */
 /***/ ((module) => {
 
@@ -933,34 +954,40 @@ exports.JwtGuard = JwtGuard = __decorate([
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
+/******/ 			id: moduleId,
+/******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = __webpack_module_cache__;
+/******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
-(() => {
-var exports = __webpack_exports__;
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core_1 = __webpack_require__(1);
-const app_module_1 = __webpack_require__(2);
-async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule);
-    await app.listen(process.env.PORT ?? 5432);
-}
-bootstrap();
-
-})();
-
+/******/ 	/* webpack/runtime/node module decorator */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nmd = (module) => {
+/******/ 			module.paths = [];
+/******/ 			if (!module.children) module.children = [];
+/******/ 			return module;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// module cache are used so entry inlining is disabled
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	var __webpack_exports__ = __webpack_require__(__webpack_require__.s = 0);
+/******/ 	
 /******/ })()
 ;

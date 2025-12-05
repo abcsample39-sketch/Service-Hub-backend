@@ -6,7 +6,10 @@
   "builds": [
     {
       "src": "dist/apps/service-hub-backend/main.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["dist/apps/service-hub-backend/**"]
+      }
     }
   ],
   "routes": [
@@ -19,5 +22,8 @@
     "dist/apps/service-hub-backend/main.js": {
       "maxDuration": 30
     }
+  },
+  "env": {
+    "NODE_ENV": "production"
   }
 }
