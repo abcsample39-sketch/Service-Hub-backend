@@ -4,15 +4,15 @@
   "outputDirectory": "dist/apps/service-hub-backend",
   "installCommand": "pnpm install --frozen-lockfile",
   "functions": {
-    "dist/apps/service-hub-backend/main.js": {
-      "runtime": "@vercel/node",
-      "maxDuration": 30
-    }
-  },
+  "dist/apps/service-hub-backend/main.js": {
+    "runtime": "nodejs18.x",
+    "maxDuration": 30
+  }
+},
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/main.js"
+      "dest": "dist/apps/service-hub-backend/main.js"
     }
   ],
   "env": {
